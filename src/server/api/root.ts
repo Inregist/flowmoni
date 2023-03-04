@@ -1,5 +1,5 @@
-import { createTRPCRouter } from "flowmoni/server/api/trpc";
-import { exampleRouter } from "flowmoni/server/api/routers/example";
+import { createTRPCRouter } from "@flowmoni/server/api/trpc";
+import { exampleRouter } from "@flowmoni/server/api/routers/example";
 
 /**
  * This is the primary router for your server.

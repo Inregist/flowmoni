@@ -4,7 +4,7 @@ import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "flowmoni/server/api/trpc";
+} from "@flowmoni/server/api/trpc";
 
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure

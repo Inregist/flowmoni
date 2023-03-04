@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-import { env } from "flowmoni/env.mjs";
+import { env } from "@flowmoni/env.mjs";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
