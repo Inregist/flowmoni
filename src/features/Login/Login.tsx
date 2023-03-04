@@ -23,7 +23,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex h-screen flex-col items-center justify-center bg-slate-50">
       <img
         src={'https://http.cat/200'}
         alt="cat"
@@ -35,7 +35,7 @@ export const Login = () => {
           placeholder="username"
           value={username}
           onChange={handleChange}
-          className="my-1 w-64 rounded-md border border-gray-200 bg-slate-100 px-2 py-1 text-lg shadow-inner"
+          className="my-1 w-64 rounded-md border border-gray-300 bg-slate-100 px-2 py-1 text-lg shadow-inner"
         />
         <input
           name="password"
@@ -43,7 +43,7 @@ export const Login = () => {
           type="password"
           value={password}
           onChange={handleChange}
-          className="my-1 w-64 rounded-md border border-gray-200 bg-slate-100 px-2 py-1 text-lg shadow-inner"
+          className="my-1 w-64 rounded-md border border-gray-300 bg-slate-100 px-2 py-1 text-lg shadow-inner"
         />
         <button className="mt-2 w-64 rounded-md bg-blue-500 p-2 font-medium text-white shadow-md">
           Login
