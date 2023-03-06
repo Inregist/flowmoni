@@ -46,9 +46,13 @@ export const Login = () => {
           className="my-1 w-64 rounded-md border border-gray-300 bg-slate-100 px-2 py-1 text-lg shadow-inner"
         />
         <button className="mt-2 w-64 rounded-md bg-blue-500 p-2 font-medium text-white shadow-md">
-          Login
+          Log in
         </button>
       </form>
+      <div className="flex mt-4 mb-2 text-gray-500 gap-1">
+        Don't have an account?
+        <a href="./signup" className="text-blue-500 underline">Sign up</a>
+      </div>      
 
       <div className="my-4 flex items-center justify-center">
         <hr className="h-[2px] w-40 bg-gray-200" />
@@ -63,6 +67,7 @@ export const Login = () => {
         <img src="https://http.cat/200" className="mx-3 h-4 w-4" />
         <span className="font-medium text-gray-500">Login with Google</span>
       </button>
+
     </div>
   );
 };
