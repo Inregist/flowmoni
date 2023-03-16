@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 
 export const Login = () => {
@@ -25,8 +26,8 @@ export const Login = () => {
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-slate-50">
       <img
-        src={'https://http.cat/200'}
-        alt="cat"
+        src={'/icon-512x512.png'}
+        alt="logo"
         className="mb-6 h-32 w-32 object-cover"
       />
       <form onSubmit={onSubmit} className="flex flex-col gap-2">
@@ -46,13 +47,15 @@ export const Login = () => {
           className="my-1 w-64 rounded-md border border-gray-300 bg-slate-100 px-2 py-1 text-lg shadow-inner"
         />
         <button className="mt-2 w-64 rounded-md bg-blue-500 p-2 font-medium text-white shadow-md">
-          Log in
+          Login
         </button>
       </form>
-      <div className="flex mt-4 mb-2 text-gray-500 gap-1">
+      <div className="mt-4 mb-2 flex gap-1 text-gray-500">
         Don't have an account?
-        <a href="./signup" className="text-blue-500 underline">Sign up</a>
-      </div>      
+        <Link href={'/signup'} className="text-blue-600 underline">
+          Sign up
+        </Link>
+      </div>
 
       <div className="my-4 flex items-center justify-center">
         <hr className="h-[2px] w-40 bg-gray-200" />
@@ -67,7 +70,6 @@ export const Login = () => {
         <img src="https://http.cat/200" className="mx-3 h-4 w-4" />
         <span className="font-medium text-gray-500">Login with Google</span>
       </button>
-
     </div>
   );
 };
