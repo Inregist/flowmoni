@@ -1,10 +1,11 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 import {
   createTRPCRouter,
   publicProcedure,
   protectedProcedure,
-} from "@flowmoni/server/api/trpc";
+} from '@flowmoni/server/api/trpc';
+import { users } from '@flowmoni/server/schema';
 
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
@@ -16,10 +17,10 @@ export const exampleRouter = createTRPCRouter({
     }),
 
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.example.findMany();
+    return ctx.drizzle.select().from(users);
   }),
 
   getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
+    return 'you can now see this secret message!';
   }),
 });
