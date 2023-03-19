@@ -2188,10 +2188,10 @@ dreamopt@~0.8.0:
   dependencies:
     wordwrap ">=0.0.2"
 
-drizzle-kit@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/drizzle-kit/-/drizzle-kit-0.17.0.tgz#77eb9169646e0f6ffc391ad14e2d8cc8132fd4e7"
-  integrity sha512-b9Yr+oHz0BtBc4zhhZQ+K83w8AiVEG5qfBzjiaqzjhMnlK0cxbLlZIdq95aaUqokKc8rfxpNmmzrm67SERSzYA==
+drizzle-kit@^0.17.0-0cf3fe9:
+  version "0.17.0-0cf3fe9"
+  resolved "https://registry.yarnpkg.com/drizzle-kit/-/drizzle-kit-0.17.0-0cf3fe9.tgz#6196550f7e15b07e9cc898d85e19075a6414af9a"
+  integrity sha512-j2O8yiwd00s2/9ijkX5N5Mq4dI78GegPV+QGl8NgVUmFYuU1IL5qjMpxoBM/JoMP3MoSR3+eQ7wmZvkD7mPUGg==
   dependencies:
     camelcase "^7.0.1"
     chalk "^5.2.0"

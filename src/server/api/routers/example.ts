@@ -5,7 +5,7 @@ import {
   publicProcedure,
   protectedProcedure,
 } from '@flowmoni/server/api/trpc';
-import { users } from '@flowmoni/server/schema';
+import { wallets } from '@flowmoni/server/schema';
 
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
@@ -17,7 +17,7 @@ export const exampleRouter = createTRPCRouter({
     }),
 
   getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.drizzle.select().from(users);
+    return ctx.drizzle.select().from(wallets);
   }),
 
   getSecretMessage: protectedProcedure.query(() => {
