@@ -8,8 +8,8 @@ import {
 
 export const categories = mysqlTable('categories', {
   id: serial('id').primaryKey(),
-  name: varchar('name', { length: 20 }),
-  level: int('level').default(0),
+  name: varchar('name', { length: 20 }).notNull(),
+  level: int('level').notNull().default(0),
   icon: varchar('icon', { length: 255 }),
   parentId: int('parent_id'),
 });

@@ -8,7 +8,7 @@ import {
 
 export const templates = mysqlTable('templates', {
   id: serial('id').primaryKey(),
-  name: varchar('name', { length: 50 }),
+  name: varchar('name', { length: 50 }).notNull(),
 }, (table) => {
   return {
     uniqName: uniqueIndex('unique_name').on(table.name),
