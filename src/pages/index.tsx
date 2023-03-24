@@ -1,16 +1,34 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
+import { getSession, signOut, useSession } from 'next-auth/react';
 import { FC } from 'react';
 
 const Home: FC = () => {
-  return <></>;
+  const { data, status } = useSession();
+
+  return (
+    <>
+      <div>You're logged in</div>
+      <button onClick={() => signOut()}>Log out</button>
+      <pre>{JSON.stringify(data, null, 2) ?? "uu"}</pre>
+      <pre>{JSON.stringify(status, null, 2) ?? "uu"}</pre>
+    </>
+  );
 };
 
-export const getStaticProps: GetStaticProps = async (_) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const sess = await getSession(ctx);
+
+  if (!sess?.user?.id) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
   return {
-    redirect: {
-      destination: '/login',
-      permanent: false,
-    },
+    props: {},
   };
 };
 

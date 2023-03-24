@@ -1,20 +1,29 @@
-import { signIn } from 'next-auth/react';
+import { api } from '@flowmoni/utils/api';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-export const Login = () => {
-  const router = useRouter();
+export const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [cfPassword, setCfPassword] = useState('');
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const router = useRouter();
+
+  const { mutateAsync: signUp } = api.auth.register.useMutation();
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-    signIn('credentials', {
-      username,
-      password,
-    });
+    try {
+      const { isSuccess } = await signUp({
+        username,
+        password,
+        confirmPassword: cfPassword,
+      });
+      if (isSuccess) router.push('/login');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleGoogleLogin = () => {
@@ -27,6 +36,8 @@ export const Login = () => {
       setUsername(value);
     } else if (name === 'password') {
       setPassword(value);
+    } else if (name === 'confirmPassword') {
+      setCfPassword(value);
     }
   };
 
@@ -53,14 +64,22 @@ export const Login = () => {
           onChange={handleChange}
           className="my-1 w-64 rounded-md border border-gray-300 bg-slate-100 px-2 py-1 text-lg shadow-inner"
         />
+        <input
+          name="confirmPassword"
+          placeholder="confirm password"
+          type="password"
+          value={cfPassword}
+          onChange={handleChange}
+          className="my-1 w-64 rounded-md border border-gray-300 bg-slate-100 px-2 py-1 text-lg shadow-inner"
+        />
         <button className="mt-2 w-64 rounded-md bg-blue-500 p-2 font-medium text-white shadow-md">
-          Login
+          Sign up
         </button>
       </form>
       <div className="mt-4 mb-2 flex gap-1 text-gray-500">
-        Don't have an account?
-        <Link href={'/signup'} className="text-blue-600 underline">
-          Sign up
+        Already have an account?
+        <Link href={'/login'} className="text-blue-600 underline">
+          Login
         </Link>
       </div>
 
