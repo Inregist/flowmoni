@@ -1,9 +1,9 @@
-import { LoginProps } from '@flowmoni/features/Login';
 import { Login } from '@flowmoni/features/Login/Login';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
+import { FC } from 'react';
 
-const Page = (props: LoginProps) => {
+const Page: FC = (props) => {
   return <Login {...props} />;
 };
 

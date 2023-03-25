@@ -1,10 +1,9 @@
 import { SignUp } from '@flowmoni/features/SignUp';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
+import { FC } from 'react';
 
-interface PageProps {}
-
-const Page = (props: PageProps) => {
+const Page: FC = (props) => {
   return <SignUp {...props} />;
 };
 
