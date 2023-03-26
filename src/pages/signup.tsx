@@ -1,6 +1,6 @@
 import { SignUp } from '@flowmoni/features/SignUp';
+import { getServerAuthSession } from '@flowmoni/server/auth';
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
 import { FC } from 'react';
 
 const Page: FC = (props) => {
@@ -8,7 +8,7 @@ const Page: FC = (props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const sess = await getSession(ctx);
+  const sess = await getServerAuthSession(ctx);
 
   if (sess?.user?.id) {
     return {
