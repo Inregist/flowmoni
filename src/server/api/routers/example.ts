@@ -9,6 +9,7 @@ import { wallets } from '@flowmoni/server/schema';
 
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
+    .meta({ description: 'Say hello to the world' })
     .input(z.object({ text: z.string() }))
     .query(({ input }) => {
       return {

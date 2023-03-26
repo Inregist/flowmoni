@@ -64,9 +64,10 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  * This is where the tRPC API is initialized, connecting the context and transformer.
  */
 import { initTRPC, TRPCError } from '@trpc/server';
+import { TRPCPanelMeta } from "trpc-panel";
 import superjson from 'superjson';
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
+const t = initTRPC.context<typeof createTRPCContext>().meta<TRPCPanelMeta>().create({
   transformer: superjson,
   errorFormatter({ shape }) {
     return shape;
