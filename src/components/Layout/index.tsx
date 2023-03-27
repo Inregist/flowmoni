@@ -8,7 +8,7 @@ export const Layout = (props: PropsWithChildren & { className?: string }) => {
 
   return (
     <div className="flex h-screen flex-col items-center justify-center bg-slate-300">
-      <div className="flex h-full w-full flex-col rounded-md border-2 border-slate-200 bg-slate-100 shadow-xl sm:my-4 sm:w-96">
+      <div className="flex h-full w-full flex-col rounded-md border-2 border-slate-200 bg-slate-100 shadow-xl md:my-4 md:w-96">
         <div
           className={`flex flex-grow flex-col items-center justify-start ${className}`}
         >

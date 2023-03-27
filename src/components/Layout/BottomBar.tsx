@@ -68,7 +68,7 @@ export const BottomBar = () => {
 const MenuItem = ({ name, value, icon }: any) => {
   return (
     <Tabs.Trigger
-      className="flex-1 text-xs text-slate-600 data-[state=active]:font-semibold data-[state=active]:text-slate-900"
+      className="flex-1 text-xs text-slate-600 data-[state=active]:font-bold data-[state=active]:text-slate-800"
       value={value}
     >
       <div className="flex flex-col items-center justify-center">

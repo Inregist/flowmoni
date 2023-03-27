@@ -57,10 +57,10 @@ export const Transactions = () => {
             className="h-12 w-full border-b border-gray-300 shadow-sm"
             defaultValue="Nov"
           >
-            <Tabs.List className="flex flex-nowrap border-b  shadow-sm">
+            <Tabs.List className="flex w-full flex-nowrap border-b shadow-sm">
               {months.map((month, i) => (
                 <Tabs.Trigger
-                  className="mb-1 h-12 w-16 items-center justify-center border-slate-500 data-[state=active]:border-b-2"
+                  className="mb-1 h-12 w-2/5 flex-shrink-0 items-center justify-center border-slate-500 data-[state=active]:border-b-2 data-[state=active]:font-bold md:w-40"
                   key={month}
                   value={month}
                 >
@@ -70,7 +70,12 @@ export const Transactions = () => {
             </Tabs.List>
           </Tabs.Root>
         </ScrollArea.Viewport>
-        <ScrollArea.Scrollbar orientation="horizontal"></ScrollArea.Scrollbar>
+        <ScrollArea.Scrollbar
+          className="flex h-1 bg-slate-500/20"
+          orientation="horizontal"
+        >
+          <ScrollArea.Thumb className="h-1 w-8 rounded-full data-[state=visible]:bg-slate-600/20 " />
+        </ScrollArea.Scrollbar>
       </ScrollArea.Root>
 
       <ScrollArea.Root className="h-1 w-full flex-grow bg-slate-200">
