@@ -1,6 +1,7 @@
+'use client';
+
 import { PropsWithChildren } from 'react';
 import { BottomBar } from './BottomBar';
-import { TopBar } from './TopBar';
 
 export const Layout = (props: PropsWithChildren & { className?: string }) => {
   const { children, className } = props;

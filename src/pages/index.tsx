@@ -20,6 +20,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   return {
+    redirect: {
+      destination: '/transactions',
+      permanent: false,
+    },
+  };
+
+  return {
     props: {},
   };
 };

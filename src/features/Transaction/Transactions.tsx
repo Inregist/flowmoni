@@ -1,27 +1,28 @@
 import { Layout } from '@flowmoni/components/Layout';
 import * as Tabs from '@radix-ui/react-tabs';
 import * as ScrollArea from '@radix-ui/react-scroll-area';
-import {
-  Transaction,
-  TransactionGroup,
-} from '@flowmoni/components/Transaction';
-import { useState } from 'react';
-
-const generateTransactionGroups = () => {
-  return Array(5)
-    .fill(0)
-    .map((g) => ({
-      date: '2021-11-01',
-      transactions: Array(Math.floor(Math.random() * 5 + 1))
-        .fill(0)
-        .map((t) => ({})),
-    }));
-};
+import { TransactionGroup } from '@flowmoni/components/Transaction';
+import { useEffect, useState } from 'react';
 
 export const Transactions = () => {
-  const [transactionGroups, setTransactionGroups] = useState(
-    generateTransactionGroups(),
-  );
+  const generateTransactionGroups = () => {
+    return Array(5)
+      .fill(0)
+      .map((g) => ({
+        date: '2021-11-01',
+        transactions: Array(Math.floor(Math.random() * 5 + 1))
+          .fill(0)
+          .map((t) => ({})),
+      }));
+  };
+
+  const [transactionGroups, setTransactionGroups] = useState<
+    ReturnType<typeof generateTransactionGroups>
+  >([]);
+
+  useEffect(() => {
+    setTransactionGroups(generateTransactionGroups());
+  }, []);
 
   const handleTabChange = (value: string) => {
     console.log('Tab Change', value);
