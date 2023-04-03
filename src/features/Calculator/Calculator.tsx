@@ -101,6 +101,7 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
           </button>
           {num.map((v) => (
             <button
+              key={v}
               className="border border-gray-200 bg-gray-100 hover:bg-gray-200"
               onClick={() => updateResult(v)}
             >
