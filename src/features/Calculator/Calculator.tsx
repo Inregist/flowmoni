@@ -1,24 +1,19 @@
 import { Layout } from '@flowmoni/components/Layout';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-export const Calculator = () => {
-  const [result, setResult] = useState('');
+export const Calculator = (props: { onChange: (value: number) => void }) => {
+  const [result, _setResult] = useState('');
   const [confirmBtn, setConfirmBtn] = useState(true);
 
   const ops = ['*', '/', '+', '-', '.'];
   const num = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '000', '.'];
 
-  useEffect(() => {
-    console.log('result changed!!!');
-    setConfirmBtn(
-      (result.indexOf('-') === 0 &&
-        result.match(/\-/g)?.length === 1 &&
-        result.match(/\d/g)?.length >= 1 &&
-        !result.match(/[\+,\*,\/]/g)) ||
-        result === '' ||
-        !result.match(/[\+,\-,\*,\/]/g),
-    );
-  }, [result]);
+  const setResult = (v: string) => {
+    _setResult(v);
+
+    const number = Number(v);
+    setConfirmBtn(!isNaN(number));
+  };
 
   const updateResult = (v: string) => {
     if (v === '.' && ops.includes(result.slice(-1))) {
@@ -36,11 +31,15 @@ export const Calculator = () => {
   };
 
   const handleClickEqual = () => {
-    const res = Math.floor(eval(result) * 100) / 100;
-    if (res === 0) {
-      setResult('');
-    } else {
-      setResult(res.toString());
+    try {
+      const res = Math.floor(eval(result) * 100) / 100;
+      if (res === 0) {
+        setResult('');
+      } else {
+        setResult(res.toString());
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -58,6 +57,7 @@ export const Calculator = () => {
   const sentData = () => {
     //TODO
     console.log('Sent Data...' + result);
+    props.onChange?.(Number(result));
   };
 
   return (
