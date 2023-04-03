@@ -16,17 +16,27 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
   };
 
   const updateResult = (v: string) => {
-    if (v === '.' && ops.includes(result.slice(-1))) {
+    // TODO: fix when user input 10.0.0.0.0
+    // TODO: Set Value to 0.n when user input .n in case result is empty or 0
+
+    const lastChar = result[result.length - 1] ?? '';
+
+    if (v === '.' && ops.includes(lastChar)) {
       setResult(result + '0' + v);
     }
     if (v === '-' && result === '') {
       setResult(result + v);
     }
+
+    // TODO: fix when user input 000000
     if (
       (ops.includes(v) && result === '') ||
-      (ops.includes(v) && ops.includes(result.slice(-1)))
-    )
+      (ops.includes(v) && ops.includes(lastChar))
+    ) {
       return;
+    }
+
+
     setResult(result + v);
   };
 
