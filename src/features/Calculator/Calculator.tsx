@@ -16,12 +16,12 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
   };
 
   const updateResult = (v: string) => {
-    // TODO: fix when user input 10.0.0.0.0
-    // TODO: Set Value to 0.n when user input .n in case result is empty or 0
 
     const lastChar = result[result.length - 1] ?? '';
+    const n = (result + v).split(/[\+\-\*\/]/g);
+    const lastNum = n[n.length - 1];
 
-    if (v === '.' && ops.includes(lastChar)) {
+    if (v === '.' && (ops.includes(lastChar) || result === '')) {
       setResult(result + '0' + v);
     }
     if (v === '-' && result === '') {
@@ -31,11 +31,11 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
     // TODO: fix when user input 000000
     if (
       (ops.includes(v) && result === '') ||
-      (ops.includes(v) && ops.includes(lastChar))
+      (ops.includes(v) && ops.includes(lastChar)) ||
+      isNaN(Number(lastNum))
     ) {
       return;
     }
-
 
     setResult(result + v);
   };
