@@ -1,5 +1,6 @@
 import { PersonIcon, PlusIcon, ReaderIcon } from '@radix-ui/react-icons';
 import * as Tabs from '@radix-ui/react-tabs';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -51,12 +52,13 @@ export const BottomBar = () => {
         {LeftMenus.map((menu) => (
           <MenuItem key={menu.value} {...menu} />
         ))}
-        <button
+        <Link
+          href="/transactions/new"
           className="rounded-full bg-green-600 p-2 text-xs text-white"
           onClick={handleAddTransaction}
         >
           <PlusIcon />
-        </button>
+        </Link>
         {RightMenus.map((menu) => (
           <MenuItem key={menu.value} {...menu} />
         ))}

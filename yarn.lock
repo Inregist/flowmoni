@@ -961,6 +961,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.36.0.tgz#9837f768c03a1e4a30bd304a64fb8844f0e72efe"
   integrity sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==
 
+"@hookform/resolvers@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.0.0.tgz#bb9346f1550a472a980af5b08e549366c788ff76"
+  integrity sha512-SQPefakODpyq25b/phHXDKCdRrEfPcCXV7B4nAa139wE1DxufYbbNAjeo0T04ZXBokRxZ+wD8iA1kkVMa3QwjQ==
+
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.8.tgz#03595ac2075a4dc0f191cc2131de14fbd7d410b9"
@@ -2436,10 +2441,10 @@ drizzle-kit@^0.17.0-0cf3fe9:
     json-diff "0.9.0"
     zod "^3.20.2"
 
-drizzle-orm@^0.22.0:
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/drizzle-orm/-/drizzle-orm-0.22.0.tgz#cfa6052ea620f33d93617b0440c3ea91cdf72dab"
-  integrity sha512-oZ/CNbv3NXoCxmBWTPNAZHZkuzhacT+eXM0ywemkHSTiqEJe79VQ1jvGVd0fQthfOt1UHRMuAW0CeIizhQpb2Q==
+drizzle-orm@^0.23.2:
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/drizzle-orm/-/drizzle-orm-0.23.2.tgz#c9217567ad072de58c4472e154e58f0eab4111f3"
+  integrity sha512-GSOhOc+gGSMsf3eyBzL1Yb0g0M3pOurWmFI1lVhOrmMQCVuA/smJgYSy4UeTzBV521+J+emiFaSKSomEmc+fog==
 
 ejs@^3.1.6:
   version "3.1.9"
@@ -4692,6 +4697,11 @@ react-dom@18.2.0:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-hook-form@^7.43.8:
+  version "7.43.8"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.43.8.tgz#189fe4fb31e15c280b529cc3041249ed12108d75"
+  integrity sha512-BQm+Ge5KjTk1EchDBRhdP8Pkb7MArO2jFF+UWYr3rtvh6197khi22uloLqlWeuY02ItlCzPunPsFt1/q9wQKnw==
 
 react-is@^16.13.1:
   version "16.13.1"
