@@ -16,7 +16,6 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
   };
 
   const updateResult = (v: string) => {
-
     const lastChar = result[result.length - 1] ?? '';
     const n = (result + v).split(/[\+\-\*\/]/g);
     const lastNum = n[n.length - 1];
@@ -28,11 +27,13 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
       setResult(result + v);
     }
 
-    // TODO: fix when user input 000000
     if (
-      (ops.includes(v) && result === '') ||
-      (ops.includes(v) && ops.includes(lastChar)) ||
-      isNaN(Number(lastNum))
+      //when user input oparator
+      (ops.includes(v) && (result === '' || ops.includes(lastChar))) || 
+      //when user input 0.0.0.0
+      isNaN(Number(lastNum)) ||
+      // when user input 000000
+      (Number(lastNum)<1 && !lastNum?.includes('.') && (v === '000' || ( v === '0') && !ops.includes(lastChar)) ) 
     ) {
       return;
     }
