@@ -1,6 +1,6 @@
-import { CommonInputProps } from '.';
+import { BaseInputProps } from '.';
 
-export const BaseFieldInput = (props: CommonInputProps) => {
+export const BaseFieldInput = (props: BaseInputProps) => {
   const { icon, children } = props;
 
   return (

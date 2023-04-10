@@ -1,6 +1,6 @@
 import { Layout } from '@flowmoni/components/Layout';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { boolean, date, number, string, z } from 'zod';
 import { Input, ModalInput } from '@flowmoni/components/Input';
@@ -23,8 +23,10 @@ export type NewTransactionSchema = z.infer<typeof newTransactionSchema>;
 export const NewTransaction = () => {
   const {
     register,
+    control,
     handleSubmit: formSubmit,
     formState: { errors },
+    getValues,
   } = useForm<NewTransactionSchema>({
     resolver: zodResolver(newTransactionSchema),
   });
@@ -41,7 +43,7 @@ export const NewTransaction = () => {
       console.log(data);
     },
     (error) => {
-      console.log(error);
+      console.log(getValues(), error);
     },
   );
 
@@ -62,10 +64,18 @@ export const NewTransaction = () => {
             icon={<PersonIcon />}
             registerField={register('amount')}
           />
-          <ModalInput.ModalInputText
-            icon={<PersonIcon width={32} />}
-            registerField={register('walletId')}
+
+          <Controller
+            name="walletId"
+            control={control}
+            render={({ field }) => (
+              <ModalInput.ModalInputText
+                icon={<PersonIcon width={32} />}
+                {...field}
+              />
+            )}
           />
+
           <Input.InputText
             icon={<PersonIcon />}
             registerField={register('categoryId')}
@@ -81,10 +91,14 @@ export const NewTransaction = () => {
         </div>
 
         <div className="mt-4 border-t border-gray-200 shadow-md">
-          <ModalInput.ModalInputText
-            icon={<PersonIcon />}
-            registerField={register('paidWithWalletId')}
+          <Controller
+            name="paidWithWalletId"
+            control={control}
+            render={({ field }) => (
+              <ModalInput.ModalInputText icon={<PersonIcon />} {...field} />
+            )}
           />
+
           <Input.InputText
             icon={<PersonIcon />}
             registerField={register('paidWithCategoryId')}

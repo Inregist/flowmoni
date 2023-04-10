@@ -1,10 +1,10 @@
-import { CommonInputProps } from '.';
+import { ModalInputProps } from '.';
 import * as Dialog from '@radix-ui/react-dialog';
 import { BaseFieldInput } from './BaseFieldInput';
-import { createRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const BaseModalInput = (props: CommonInputProps) => {
-  const { icon, registerField, children, placeholder } = props;
+export const _BaseModalInput = (props: ModalInputProps) => {
+  const { icon, children, placeholder, onChange } = props;
 
   const [container, setContainer] = useState<HTMLElement | null>(null);
 
