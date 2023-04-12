@@ -60,9 +60,20 @@ export const NewTransaction = () => {
       </div>
       <form className="w-full" onSubmit={handleSubmit}>
         <div className="border-t border-gray-200 shadow-md">
-          <Input.InputText
+          {/* <Input.InputText
             icon={<PersonIcon />}
             registerField={register('amount')}
+          /> */}
+
+          <Controller
+            name="amount"
+            control={control}
+            render={({ field }) => (
+              <ModalInput.ModalAmount
+                icon={<PersonIcon width={32} />}
+                {...field}
+              />
+            )}
           />
 
           <Controller

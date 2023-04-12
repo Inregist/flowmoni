@@ -1,7 +1,9 @@
-import { Layout } from '@flowmoni/components/Layout';
+import { BaseModalInput, ModalInputProps } from '.';
 import { useState } from 'react';
 
-export const Calculator = (props: { onChange: (value: number) => void }) => {
+export const ModalCalculator = (props: ModalInputProps) => {
+  const { onChange } = props;
+
   const [result, _setResult] = useState('');
   const [confirmBtn, setConfirmBtn] = useState(true);
 
@@ -66,14 +68,14 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
   };
 
   const sentData = () => {
-    //TODO
     console.log('Sent Data...' + result);
-    props.onChange?.(Number(result));
+    onChange(Number(result));
   };
 
+  
   return (
-    <Layout className="bg-white">
-      <div className="flex h-full w-full flex-col justify-end gap-1 text-lg">
+    <BaseModalInput {...props}>
+     <div className="flex h-full w-full flex-col justify-end gap-1 text-lg">
         <input
           id="res"
           className="h-10 w-full px-3 text-left align-text-bottom text-xl font-semibold"
@@ -148,6 +150,6 @@ export const Calculator = (props: { onChange: (value: number) => void }) => {
           )}
         </div>
       </div>
-    </Layout>
+    </BaseModalInput>
   );
 };

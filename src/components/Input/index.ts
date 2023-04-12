@@ -3,6 +3,7 @@ import { Text } from './Text';
 import { PropsWithChildren } from 'react';
 import { ModalTextArea } from './ModalTextArea';
 import dynamic from 'next/dynamic';
+import { ModalCalculator } from './ModalCalculator';
 
 export const BaseModalInput = dynamic(
   () => import('./BaseModalInput').then((c) => c._BaseModalInput),
@@ -26,4 +27,5 @@ export const Input = {
 
 export const ModalInput = {
   ModalInputText: ModalTextArea,
+  ModalAmount: ModalCalculator,
 };
