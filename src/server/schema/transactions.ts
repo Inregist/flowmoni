@@ -8,6 +8,8 @@ import {
   serial,
   varchar,
 } from 'drizzle-orm/mysql-core';
+import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
+import { z } from 'zod';
 
 export const transactions = mysqlTable('transactions', {
   id: serial('id').primaryKey(),
@@ -24,3 +26,14 @@ export const transactions = mysqlTable('transactions', {
 });
 export type Transaction = InferModel<typeof transactions>;
 export type TransactionInput = InferModel<typeof transactions, 'insert'>;
+
+export const insertTransactionSchema = createInsertSchema(transactions)
+  .omit({
+    id: true,
+  })
+  .extend({
+    type: z.enum(['income', 'expense', 'transfer']).default('expense'),
+    date: z.date().default(() => new Date()),
+    isExcludeFromReport: z.boolean().default(false),
+  });
+export const selectTransactionSchema = createSelectSchema(transactions);

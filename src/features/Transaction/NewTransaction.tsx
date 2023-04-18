@@ -5,20 +5,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { boolean, date, number, string, z } from 'zod';
 import { Input, ModalInput } from '@flowmoni/components/Input';
 import { PersonIcon } from '@radix-ui/react-icons';
+import { insertTransactionSchema } from '@flowmoni/server/schema/transactions';
 
-export const newTransactionSchema = z.object({
-  type: z.enum(['expense', 'income']).default('expense'),
-  walletId: number().nonnegative(),
-  categoryId: string().nonempty(),
-  amount: number().nonnegative(),
-  note: string().optional(),
-  date: date().default(() => new Date()),
-  paidWithWalletId: number().nonnegative().optional(),
-  paidWithCategoryId: string().nonempty().optional(),
-  paidWithNote: string().optional(),
-  isExcludeFromReport: boolean().default(false),
-});
-export type NewTransactionSchema = z.infer<typeof newTransactionSchema>;
+export type NewTransactionSchema = z.infer<typeof insertTransactionSchema>;
 
 export const NewTransaction = () => {
   const {
@@ -28,7 +17,7 @@ export const NewTransaction = () => {
     formState: { errors },
     getValues,
   } = useForm<NewTransactionSchema>({
-    resolver: zodResolver(newTransactionSchema),
+    resolver: zodResolver(insertTransactionSchema),
   });
   const router = useRouter();
 

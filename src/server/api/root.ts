@@ -1,6 +1,7 @@
 import { createTRPCRouter } from "@flowmoni/server/api/trpc";
 import { exampleRouter } from "@flowmoni/server/api/routers/example";
 import { authRouter } from "./routers/auth";
+import { transactionRouter } from "./routers/transaction";
 
 /**
  * This is the primary router for your server.
@@ -10,6 +11,7 @@ import { authRouter } from "./routers/auth";
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
   auth: authRouter,
+  transaction: transactionRouter,
 });
 
 // export type definition of API

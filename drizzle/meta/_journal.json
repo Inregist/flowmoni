@@ -19,6 +19,12 @@
       "version": "5",
       "when": 1679653927507,
       "tag": "0002_long_the_fallen"
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1681829938703,
+      "tag": "0003_naive_madame_hydra"
     }
   ]
 }
