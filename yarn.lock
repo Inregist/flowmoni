@@ -2504,10 +2504,10 @@ dreamopt@~0.8.0:
   dependencies:
     wordwrap ">=0.0.2"
 
-drizzle-kit@^0.17.0-0cf3fe9:
-  version "0.17.0-0cf3fe9"
-  resolved "https://registry.yarnpkg.com/drizzle-kit/-/drizzle-kit-0.17.0-0cf3fe9.tgz#6196550f7e15b07e9cc898d85e19075a6414af9a"
-  integrity sha512-j2O8yiwd00s2/9ijkX5N5Mq4dI78GegPV+QGl8NgVUmFYuU1IL5qjMpxoBM/JoMP3MoSR3+eQ7wmZvkD7mPUGg==
+drizzle-kit@^0.17.4:
+  version "0.17.4"
+  resolved "https://registry.yarnpkg.com/drizzle-kit/-/drizzle-kit-0.17.4.tgz#e0bfdf768a35fdef283c0e6960cfd6186feb1022"
+  integrity sha512-9OuHsZBxS1IkWnF9vFeTWR5XH9UCv4SclfPaFt7he8TPVzDka5vpGmhNh9Oaj+OZg6Pf4PSV2Yt8X3c44ayHVA==
   dependencies:
     camelcase "^7.0.1"
     chalk "^5.2.0"
@@ -2519,10 +2519,15 @@ drizzle-kit@^0.17.0-0cf3fe9:
     json-diff "0.9.0"
     zod "^3.20.2"
 
-drizzle-orm@^0.23.2:
-  version "0.23.2"
-  resolved "https://registry.yarnpkg.com/drizzle-orm/-/drizzle-orm-0.23.2.tgz#c9217567ad072de58c4472e154e58f0eab4111f3"
-  integrity sha512-GSOhOc+gGSMsf3eyBzL1Yb0g0M3pOurWmFI1lVhOrmMQCVuA/smJgYSy4UeTzBV521+J+emiFaSKSomEmc+fog==
+drizzle-orm@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/drizzle-orm/-/drizzle-orm-0.24.0.tgz#53a40a54cf895b5fad2169e403cc55a43d8db41d"
+  integrity sha512-9oRpn3g+9Uad7yeZhgSISpibpfSKyuDxK1mSF/j6Brajlo3vLA9MOP7mBTM4krbKhcehFWCDd2UExJ70ykY07A==
+
+drizzle-zod@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/drizzle-zod/-/drizzle-zod-0.3.0.tgz#348cbdf913dabccd40f42761051829fab55a4455"
+  integrity sha512-Up2X1ojUDFWifoSAuHEzZfplf247uu+yw1qP3bWnEJUbHoebAVjIHRGL4EzokGlGiZgaKQ+3kNo8gP6w34TIcw==
 
 ejs@^3.1.6:
   version "3.1.9"
