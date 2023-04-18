@@ -1,5 +1,6 @@
 import { BaseModalInput, ModalInputProps } from '.';
 import { useState } from 'react';
+import * as Dialog from '@radix-ui/react-dialog';
 
 export const ModalCalculator = (props: ModalInputProps) => {
   const { onChange } = props;
@@ -7,7 +8,7 @@ export const ModalCalculator = (props: ModalInputProps) => {
   const [result, _setResult] = useState('');
   const [confirmBtn, setConfirmBtn] = useState(true);
 
-  const ops = ['*', '/', '+', '-', '.'];
+  const ops = ['*', '/', '+', '-'];
   const num = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '000', '.'];
 
   const setResult = (v: string) => {
@@ -29,13 +30,19 @@ export const ModalCalculator = (props: ModalInputProps) => {
       setResult(result + v);
     }
 
+    if (ops.includes(v) && ops.includes(lastChar)) {
+      setResult(result.slice(0, -1) + v);
+    }
+
     if (
       //when user input oparator
-      (ops.includes(v) && (result === '' || ops.includes(lastChar))) || 
+      (ops.includes(v) && (result === '' || ops.includes(lastChar))) ||
       //when user input 0.0.0.0
       isNaN(Number(lastNum)) ||
       // when user input 000000
-      (Number(lastNum)<1 && !lastNum?.includes('.') && (v === '000' || ( v === '0') && !ops.includes(lastChar)) ) 
+      (Number(lastNum) < 1 &&
+        !lastNum?.includes('.') &&
+        (v === '000' || (v === '0' && !ops.includes(lastChar))))
     ) {
       return;
     }
@@ -68,14 +75,12 @@ export const ModalCalculator = (props: ModalInputProps) => {
   };
 
   const sentData = () => {
-    console.log('Sent Data...' + result);
     onChange(Number(result));
   };
 
-  
   return (
     <BaseModalInput {...props}>
-     <div className="flex h-full w-full flex-col justify-end gap-1 text-lg">
+      <div className="flex h-full w-full flex-col justify-end gap-1 text-lg">
         <input
           id="res"
           className="h-10 w-full px-3 text-left align-text-bottom text-xl font-semibold"
@@ -141,12 +146,12 @@ export const ModalCalculator = (props: ModalInputProps) => {
               =
             </button>
           ) : (
-            <button
+            <Dialog.Close
               className="col-start-4 row-start-4 row-end-6 border border-gray-200 bg-blue-500 font-semibold text-white hover:bg-blue-400"
               onClick={sentData}
             >
               {'>'}
-            </button>
+            </Dialog.Close>
           )}
         </div>
       </div>
