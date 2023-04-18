@@ -70,6 +70,7 @@ export const NewTransaction = () => {
             control={control}
             render={({ field }) => (
               <ModalInput.ModalAmount
+                placeholder='amount'
                 icon={<PersonIcon width={32} />}
                 {...field}
               />
@@ -89,6 +90,7 @@ export const NewTransaction = () => {
 
           <Input.InputText
             icon={<PersonIcon />}
+            placeholder='category'
             registerField={register('categoryId')}
           />
           <Input.InputText

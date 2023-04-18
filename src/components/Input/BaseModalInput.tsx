@@ -4,7 +4,7 @@ import { BaseFieldInput } from './BaseFieldInput';
 import { useEffect, useState } from 'react';
 
 export const _BaseModalInput = (props: ModalInputProps) => {
-  const { icon, children, placeholder, onChange } = props;
+  const { icon, children, placeholder, onChange, name } = props;
 
   const [container, setContainer] = useState<HTMLElement | null>(null);
 
@@ -18,7 +18,7 @@ export const _BaseModalInput = (props: ModalInputProps) => {
       <Dialog.Trigger className="w-full">
         <BaseFieldInput {...props}>
           <div className="h-8 w-full grow border-b border-gray-300 bg-inherit text-left text-lg text-gray-400">
-            modal
+            {placeholder ?? name}
           </div>
         </BaseFieldInput>
       </Dialog.Trigger>
@@ -27,7 +27,7 @@ export const _BaseModalInput = (props: ModalInputProps) => {
         <Dialog.Content className="absolute inset-0 flex flex-col rounded-md border border-slate-200 bg-slate-100 md:inset-y-4 md:left-[calc(50%-12rem)] md:w-96">
           <div className="round-t-md mb-4 flex w-full justify-between bg-white p-4 shadow-sm ">
             <Dialog.Close className="w-8">X</Dialog.Close>
-            <div className="ml-4 mr-auto font-semibold">Modal of something</div>
+            <div className="ml-4 mr-auto font-semibold">{placeholder ?? name}</div>
           </div>
           {children}
         </Dialog.Content>
