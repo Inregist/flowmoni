@@ -1,5 +1,5 @@
+import { InferModel } from 'drizzle-orm';
 import {
-  InferModel,
   int,
   mysqlTable,
   serial,

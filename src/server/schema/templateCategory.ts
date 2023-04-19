@@ -1,4 +1,5 @@
-import { InferModel, int, mysqlTable, uniqueIndex } from 'drizzle-orm/mysql-core';
+import { InferModel } from 'drizzle-orm';
+import { int, mysqlTable, uniqueIndex } from 'drizzle-orm/mysql-core';
 
 export const templateCategories = mysqlTable('templateCategories', {
   templateId: int('template_id').notNull(),

@@ -13,8 +13,8 @@
 // string oauthTokenSecret
 // string oauthToken
 
+import { InferModel } from 'drizzle-orm';
 import {
-  InferModel,
   int,
   mysqlTable,
   serial,
