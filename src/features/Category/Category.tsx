@@ -7,54 +7,25 @@ import {
 } from '@radix-ui/react-icons';
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Select from '@radix-ui/react-select';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { useState } from 'react';
+import { CategoryGroup } from '@flowmoni/server/api/routers/category';
 
-const AccordionTrigger = React.forwardRef(
-  ({ children, className, ...props }, forwardedRef) => (
-    <Accordion.Header className="flex h-10 w-full items-center justify-center gap-1 bg-gray-300">
-      <Accordion.Trigger className="flex w-full items-center justify-start gap-2 py-1 pl-2 text-lg font-medium">
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-400">
-          <BoxIcon />
-        </div>
-        <div className="">{children}</div>
-      </Accordion.Trigger>
-      <Accordion.Trigger
-        className="flex items-center justify-center p-2 transition-transform data-[state=open]:rotate-180"
-        {...props}
-        ref={forwardedRef}
-      >
-        <ChevronDownIcon className="flex h-5 w-5" aria-hidden />
-      </Accordion.Trigger>
-    </Accordion.Header>
-  ),
-);
-
-const AccordionContent = React.forwardRef(
-  (
-    { children, className, ...props },
-    forwardedRef: React.Ref<HTMLDivElement>,
-  ) => (
-    <Accordion.Content
-      className="flex w-96 overflow-hidden"
-      // className="flex w-96 overflow-hidden data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up"
+const AccordionTrigger = ({ children, ...props }: PropsWithChildren) => (
+  <Accordion.Header className="flex h-10 w-full items-center justify-center gap-1 bg-gray-300">
+    <Accordion.Trigger className="flex w-full items-center justify-start gap-2 py-1 pl-2 text-lg font-medium">
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-400">
+        <BoxIcon />
+      </div>
+      <div className="">{children}</div>
+    </Accordion.Trigger>
+    <Accordion.Trigger
+      className="flex items-center justify-center p-2 transition-transform data-[state=open]:rotate-180"
       {...props}
-      ref={forwardedRef}
     >
-      <div className="w-full">{children}</div>
-    </Accordion.Content>
-  ),
-);
-
-const AccordionItem = React.forwardRef(
-  (
-    { children, className, ...props },
-    forwardedRef: React.Ref<HTMLDivElement>,
-  ) => (
-    <Accordion.Item className="" {...props} ref={forwardedRef}>
-      {children}
-    </Accordion.Item>
-  ),
+      <ChevronDownIcon className="flex h-5 w-5" aria-hidden />
+    </Accordion.Trigger>
+  </Accordion.Header>
 );
 
 export const Category = () => {
@@ -62,6 +33,29 @@ export const Category = () => {
     { name: 'wallet1', icon: 'source' },
     { name: 'wallet2', icon: 'source2' },
     { name: 'wallet3', icon: 'source3' },
+  ];
+
+  const grouped: CategoryGroup[] = [
+    {
+      id: 1,
+      name: 'cat1',
+      level: 1,
+      icon: 'cat1.png',
+      parentId: 0,
+      children: [
+        {
+          id: 1,
+          name: 'cat1',
+          level: 1,
+          icon: 'cat1.png',
+          parentId: 0,
+          children: [
+            { id: 1, name: 'cat1', level: 1, icon: 'cat1.png', parentId: 0 },
+            { id: 1, name: 'cat1', level: 1, icon: 'cat1.png', parentId: 0 },
+          ],
+        },
+      ],
+    },
   ];
 
   const list = [
@@ -105,7 +99,6 @@ export const Category = () => {
 
   return (
     <Layout className="bg-white">
-
       <Select.Root defaultValue={wallets[0]?.name}>
         <Select.Trigger className="m-3 flex h-10 w-32 items-center justify-between self-end rounded-l-3xl rounded-r-lg bg-gray-300">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-400">
@@ -125,6 +118,7 @@ export const Category = () => {
             <Select.Viewport className="p-1">
               {wallets.map((v) => (
                 <Select.Item
+                  key={v.name}
                   value={v.name}
                   className="flex h-10 select-none items-center gap-2 px-1 data-[disable]:pointer-events-none data-[highlighted]:bg-gray-300"
                 >
@@ -133,8 +127,8 @@ export const Category = () => {
                     {/*v.icon*/}
                   </div>
                   <Select.ItemText>{v.name}</Select.ItemText>
-                  <Select.ItemIndicator className='flex justify-end w-full'>
-                    <CheckIcon/>
+                  <Select.ItemIndicator className="flex w-full justify-end">
+                    <CheckIcon />
                   </Select.ItemIndicator>
                 </Select.Item>
               ))}
@@ -167,30 +161,38 @@ export const Category = () => {
         className="flex w-96 flex-col"
         collapsible
       >
-        {list.map((l, i) => (
-          <AccordionItem value={i.toString()}>
-            <AccordionTrigger>{l.topic}</AccordionTrigger>
-            <AccordionContent>
-              {l.content.map((v) => (
-                <div className="w-full">
-                  <div className="flex w-full items-center gap-2 bg-gray-200 p-1 px-4 font-medium">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-400">
-                      <BoxIcon />
-                    </div>
-                    {v.subTopic}
-                  </div>
-                  {v.content.map((cv) => (
-                    <div className="flex w-full items-center gap-2 bg-gray-100 p-1 px-10 font-thin">
-                      <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-400">
+        {list.map((lv1) => (
+          <Accordion.Item value={lv1.topic}>
+            <AccordionTrigger>{lv1.topic}</AccordionTrigger>
+            <Accordion.Content
+              className="flex w-96 overflow-hidden"
+              // className="flex w-96 overflow-hidden data-[state=open]:animate-slide-down data-[state=closed]:animate-slide-up"
+            >
+              <div className="w-full">
+                {lv1.content.map((v) => (
+                  <div key={v.subTopic} className="w-full">
+                    <div className="flex w-full items-center gap-2 bg-gray-200 p-1 px-4 font-medium">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-400">
                         <BoxIcon />
                       </div>
-                      {cv}
+                      {v.subTopic}
                     </div>
-                  ))}
-                </div>
-              ))}
-            </AccordionContent>
-          </AccordionItem>
+                    {v.content.map((cv) => (
+                      <div
+                        key={cv}
+                        className="flex w-full items-center gap-2 bg-gray-100 p-1 px-10 font-thin"
+                      >
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-gray-400">
+                          <BoxIcon />
+                        </div>
+                        {cv}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </Accordion.Content>
+          </Accordion.Item>
         ))}
       </Accordion.Root>
     </Layout>
