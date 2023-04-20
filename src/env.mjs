@@ -1,4 +1,16 @@
 import { z } from 'zod';
+/**
+ * Resolve for boolean values
+ * @param {string | undefined} env
+ * @param {boolean} defaultValue
+ * @returns
+ */
+export const resolveBoolean = (env, defaultValue) => {
+  if (env === undefined) {
+    return defaultValue;
+  }
+  return env === 'true';
+};
 
 /**
  * Specify your server-side environment variables schema here. This way you can ensure the app isn't
@@ -22,6 +34,7 @@ const server = z.object({
     // VERCEL_URL doesn't include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string().min(1) : z.string().url(),
   ),
+  ENABLE_PLAYGROUND: z.boolean().default(false).optional(),
 });
 
 /**
@@ -36,7 +49,7 @@ const client = z.object({
  * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
  * middlewares) or client-side so we need to destruct manually.
  *
- * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
+ * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | boolean | undefined>}
  */
 const processEnv = {
   DATABASE_URL: process.env.DATABASE_URL,
@@ -44,6 +57,7 @@ const processEnv = {
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_JWT_SECRET: process.env.NEXTAUTH_JWT_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+  ENABLE_PLAYGROUND: resolveBoolean(process.env.ENABLE_PLAYGROUND, false),
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
@@ -56,6 +70,7 @@ const merged = server.merge(client);
 /** @typedef {z.infer<typeof merged>} MergedOutput */
 /** @typedef {z.SafeParseReturnType<MergedInput, MergedOutput>} MergedSafeParseReturn */
 
+// @ts-ignore
 let env = /** @type {MergedOutput} */ (process.env);
 
 if (!!process.env.SKIP_ENV_VALIDATION == false) {
