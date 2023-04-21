@@ -5,6 +5,7 @@ import {
   serial,
   varchar,
 } from 'drizzle-orm/mysql-core';
+import { z } from 'zod';
 
 export const wallets = mysqlTable('wallets', {
   id: serial('id').primaryKey(),
@@ -17,3 +18,5 @@ export const wallets = mysqlTable('wallets', {
 });
 export type Wallet = InferModel<typeof wallets>;
 export type WalletInput = InferModel<typeof wallets, 'insert'>;
+
+export const WalletEnum = z.enum(['basic','credit']);
